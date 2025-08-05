@@ -2,6 +2,8 @@ package com.nfinnovagithub
 
 import android.app.Application
 import com.nfinnovagithub.di.networkModule
+import com.nfinnovagithub.features.repositoryDetails.data.di.repositoryDetailsModule
+import com.nfinnovagithub.features.repositoryDetails.presentation.di.repositoryViewModelModule
 import com.nfinnovagithub.features.repositoryList.data.di.repositoryList
 import com.nfinnovagithub.features.repositoryList.presentation.di.repositoryListViewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -20,6 +22,8 @@ class NFInnovaApplication: Application() {
                 networkModule,
                 repositoryList,
                 repositoryListViewModelModule,
+                repositoryViewModelModule,
+                repositoryDetailsModule,
             )
         }
     }

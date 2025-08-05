@@ -3,7 +3,6 @@ package com.nfinnovagithub.features.repositoryList.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nfinnovagithub.features.repositoryList.domain.RepositoryListRepository
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,13 +17,15 @@ class RepositoryListViewModel(
     val repoListScreenState: StateFlow<RepositoryListState> = _repoListScreenState .asStateFlow()
 
 
-    fun loadRepos(username: String) {
+    fun fetchRepos(username: String) {
         viewModelScope.launch {
             _repoListScreenState.value = RepositoryListState.Loading
-            delay(3000L)
             try {
                 val result = repository.getUserRepos(username).getOrThrow()
-                _repoListScreenState.value = RepositoryListState.Success(result)
+                _repoListScreenState.value = when {
+                    result.isEmpty() -> RepositoryListState.Empty
+                    else -> RepositoryListState.Success(result)
+                }
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {

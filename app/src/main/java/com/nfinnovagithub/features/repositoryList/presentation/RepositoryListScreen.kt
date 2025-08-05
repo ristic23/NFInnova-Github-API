@@ -1,8 +1,6 @@
 package com.nfinnovagithub.features.repositoryList.presentation
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,32 +20,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nfinnovagithub.ui.theme.NFInnovaGithubTheme
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.nfinnovagithub.R
 import com.nfinnovagithub.core.presentation.EmptyState
 import com.nfinnovagithub.core.presentation.ErrorState
 import com.nfinnovagithub.core.presentation.LoadingState
 import com.nfinnovagithub.features.repositoryList.domain.UserRepository
-import com.nfinnovagithub.R
+import com.nfinnovagithub.ui.theme.NFInnovaGithubTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RepositoryListWrapper(
     viewModel: RepositoryListViewModel = koinViewModel(),
     username: String = "octocat",
-    onRepositoryClick: (Int) -> Unit,
+    onRepositoryClick: (String, String) -> Unit,
 ) {
     val state by viewModel.repoListScreenState.collectAsStateWithLifecycle(RepositoryListState.Loading)
 
     LaunchedEffect(Unit) {
         // Improvement - here we can add state for username and input field
-        viewModel.loadRepos(username = username)
+        viewModel.fetchRepos(username = username)
     }
 
     RepositoryListScreen(
         state = state,
         username = username,
-        onRepositoryClick = onRepositoryClick,
+        onRepositoryClick = {
+            onRepositoryClick(username, it)
+        },
     )
 }
 
@@ -55,12 +55,11 @@ fun RepositoryListWrapper(
 private fun RepositoryListScreen(
     state: RepositoryListState,
     username: String,
-    onRepositoryClick: (Int) -> Unit,
+    onRepositoryClick: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
+            .fillMaxSize(),
     ) {
         Text(
             modifier = Modifier
@@ -102,7 +101,7 @@ private fun RepositoryListScreen(
 private fun RepositoryList(
     modifier: Modifier = Modifier,
     repos: List<UserRepository>,
-    onRepositoryClick: (Int) -> Unit,
+    onRepositoryClick: (String) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier
@@ -124,12 +123,12 @@ private fun RepositoryList(
 private fun RepositoryItem(
     modifier: Modifier = Modifier,
     repo: UserRepository,
-    onRepositoryClick: (Int) -> Unit,
+    onRepositoryClick: (String) -> Unit,
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { onRepositoryClick(repo.id) }
+            .clickable { onRepositoryClick(repo.repoName) }
             .padding(4.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onPrimary,

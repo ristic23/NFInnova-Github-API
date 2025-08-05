@@ -3,8 +3,12 @@
     <string name="emptyRepositoriesResult">This user has no public repositories.</string>
     <string name="error">Error</string>
     <string name="loadingRepositories">Loading repositories…</string>
+    <string name="loadingRepository">Loading repository</string>
     <string name="defaultErrorMsg">Something went wrong, check internet connection, and try again</string>
     <string name="openedIssues">%d opened issues</string>
     <string name="openedIssue">%d opened issue</string>
     <string name="repo">%s repository</string>
+    <string name="forksLabel">Forks: %s</string>
+    <string name="watchersLabel">Watchers: %s</string>
+    <string name="noTagsMsg">Tags are empty</string>
 </resources>

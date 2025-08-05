@@ -14,13 +14,9 @@ class RepositoryListRemoteSourceImpl(
             val response = repositoryListApi.getUserRepos(username)
             val mappedList = response.map { dto -> dto.toUserRepository() }
             mappedList
-        }.fold(
-            onSuccess = { Result.success(it) },
-            onFailure = { e ->
-                if (e is CancellationException) throw e
-                Result.failure(e)
-            }
-        )
+        }.onFailure { e ->
+            if (e is CancellationException) throw e
+        }
     }
 
 }
