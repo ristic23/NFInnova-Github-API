@@ -11,11 +11,11 @@ This is a simple Android application that demonstrates consuming the GitHub REST
 - Clean MVVM architecture
 - Repository pattern for scalable data flow
 - Unit and UI testing included
-- GitHub Action trigger on push to `main`, checks unit tests
+- GitHub Action trigger on push checks unit tests
 
 ---
 
-## Future Features
+## Future Enhancements
 
 - Adding user search input field
 - Adding local caching
