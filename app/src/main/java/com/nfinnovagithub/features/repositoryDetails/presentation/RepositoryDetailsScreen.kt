@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,13 +55,11 @@ fun RepositoryDetailsWrapper(
 
     RepositoryDetailsScreen(
         state = state,
-        repoName = repo,
     )
 }
 
 @Composable
 fun RepositoryDetailsScreen(
-    repoName: String,
     state: RepositoryDetailsState,
 ) {
     Column(
@@ -121,7 +120,8 @@ fun RepositoryDetails(
                         modifier = Modifier
                             .width(140.dp)
                             .height(140.dp)
-                            .clip(CircleShape),
+                            .clip(CircleShape)
+                            .testTag("User photo"),
                         contentDescription = "User image",
                         model = details.userPhoto,
                     )
