@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.ManagedVirtualDevice
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -48,6 +50,17 @@ android {
                 "META-INF/LICENSE",
                 "META-INF/NOTICE"
             )
+        }
+    }
+    testOptions {
+        managedDevices {
+            devices {
+                create<ManagedVirtualDevice>("pixelXLApi31") {
+                    device = "Pixel XL"
+                    apiLevel = 31
+                    systemImageSource = "aosp"
+                }
+            }
         }
     }
 }
