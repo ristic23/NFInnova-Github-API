@@ -216,7 +216,7 @@ private fun RepositoryDetailsPreview() {
                 repoName = "Repo name",
                 forks = 2,
                 watchers = 2,
-                userPhoto = "https://canto-wp-media.s3.amazonaws.com/app/uploads/2019/08/19194138/image-url-3.jpg",
+                userPhoto = "photo.jpg",
                 tags = listOf(
                     RepositoryTag(name = "tag 1", sha = "a421k4n124nkl12"),
                     RepositoryTag(name = "tag 2", sha = "da32t235252weg"),

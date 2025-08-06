@@ -13,7 +13,7 @@ class RepositoryDetailsRepositoryImpl(
         owner: String,
         repo: String
     ): Result<RepositoryDetails> {
-        // Improvement - here first data will be loaded from locale source in parallel from api
+        // Improvement - in parallel fetch data from locale source and api
         return repositoryDetailsRemoteSource.getDetailsAndTags(owner, repo)
     }
 }

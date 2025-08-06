@@ -12,7 +12,7 @@ This is a simple Android application that demonstrates consuming the GitHub REST
 - Repository pattern for scalable data flow
 - Unit test and using turbine for testing flows
 - UI test
-- GitHub Action trigger on push checks unit tests
+- A GitHub Action is used for CI/CD to trigger a workflow that runs unit tests on every push
 
 ---
 

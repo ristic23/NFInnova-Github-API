@@ -14,7 +14,7 @@ class RepositoryListViewModel(
 ): ViewModel() {
 
     private val _repoListScreenState: MutableStateFlow<RepositoryListState> = MutableStateFlow(RepositoryListState.Loading)
-    val repoListScreenState: StateFlow<RepositoryListState> = _repoListScreenState .asStateFlow()
+    val repoListScreenState: StateFlow<RepositoryListState> = _repoListScreenState.asStateFlow()
 
 
     fun fetchRepos(username: String) {
