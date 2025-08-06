@@ -13,20 +13,20 @@ class RepositoryDetailsViewModel(
     private val repositoryDetailsRepository: RepositoryDetailsRepository
 ): ViewModel() {
 
-    private val _repoListScreenState: MutableStateFlow<RepositoryDetailsState> = MutableStateFlow(RepositoryDetailsState.Loading)
-    val repoListScreenState: StateFlow<RepositoryDetailsState> = _repoListScreenState .asStateFlow()
+    private val _repoDetailsScreenState: MutableStateFlow<RepositoryDetailsState> = MutableStateFlow(RepositoryDetailsState.Loading)
+    val repoDetailsScreenState: StateFlow<RepositoryDetailsState> = _repoDetailsScreenState .asStateFlow()
 
 
     fun fetch(owner: String, repo: String) {
         viewModelScope.launch {
-            _repoListScreenState.value = RepositoryDetailsState.Loading
+            _repoDetailsScreenState.value = RepositoryDetailsState.Loading
             try {
                 val result = repositoryDetailsRepository.getDetailsAndTags(owner, repo).getOrThrow()
-                _repoListScreenState.value = RepositoryDetailsState.Success(result)
+                _repoDetailsScreenState.value = RepositoryDetailsState.Success(result)
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                _repoListScreenState.value = RepositoryDetailsState.Error(e.message)
+                _repoDetailsScreenState.value = RepositoryDetailsState.Error(e.message)
             }
         }
     }

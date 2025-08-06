@@ -46,7 +46,7 @@ fun RepositoryDetailsWrapper(
     owner: String,
     repo: String,
 ) {
-    val state by viewModel.repoListScreenState.collectAsStateWithLifecycle(Loading)
+    val state by viewModel.repoDetailsScreenState.collectAsStateWithLifecycle(Loading)
 
     LaunchedEffect(Unit) {
         viewModel.fetch(owner, repo)
