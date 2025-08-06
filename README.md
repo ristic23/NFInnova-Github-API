@@ -10,7 +10,8 @@ This is a simple Android application that demonstrates consuming the GitHub REST
 - View detailed repository information (name, description, photo, forks, watchers, and tags)
 - Clean MVVM architecture
 - Repository pattern for scalable data flow
-- Unit and UI testing included
+- Unit test and using turbine for testing flows
+- UI test
 - GitHub Action trigger on push checks unit tests
 
 ---
