@@ -94,7 +94,7 @@ fun RepositoryDetailsScreen(
 
 
 @Composable
-private fun RepositoryDetails(
+fun RepositoryDetails(
     modifier: Modifier = Modifier,
     details: RepositoryDetails,
 ) {

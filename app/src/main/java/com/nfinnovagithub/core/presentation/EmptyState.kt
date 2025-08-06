@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,11 +31,12 @@ fun EmptyState(
         verticalArrangement = Arrangement.Center
     ) {
         Icon(
-            painter = painterResource(R.drawable.ic_empty),
-            contentDescription = null,
             modifier = Modifier
+                .testTag("Empty icon")
                 .size(60.dp),
-            tint = MaterialTheme.colorScheme.error
+            painter = painterResource(R.drawable.ic_empty),
+            tint = MaterialTheme.colorScheme.error,
+            contentDescription = null,
         )
 
         Spacer(modifier = Modifier.height(16.dp))

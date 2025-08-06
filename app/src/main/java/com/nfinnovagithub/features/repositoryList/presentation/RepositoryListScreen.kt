@@ -17,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,7 +53,7 @@ fun RepositoryListWrapper(
 }
 
 @Composable
-private fun RepositoryListScreen(
+fun RepositoryListScreen(
     state: RepositoryListState,
     username: String,
     onRepositoryClick: (String) -> Unit,
@@ -98,7 +99,7 @@ private fun RepositoryListScreen(
 }
 
 @Composable
-private fun RepositoryList(
+fun RepositoryList(
     modifier: Modifier = Modifier,
     repos: List<UserRepository>,
     onRepositoryClick: (String) -> Unit,
@@ -120,7 +121,7 @@ private fun RepositoryList(
 }
 
 @Composable
-private fun RepositoryItem(
+fun RepositoryItem(
     modifier: Modifier = Modifier,
     repo: UserRepository,
     onRepositoryClick: (String) -> Unit,
@@ -129,7 +130,8 @@ private fun RepositoryItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable { onRepositoryClick(repo.repoName) }
-            .padding(4.dp),
+            .padding(4.dp)
+            .testTag("Repository Item"),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onPrimary,
         ),
