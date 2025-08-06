@@ -26,4 +26,4 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: 🔬 Run UI Instrumented Tests
-        run: ./gradlew pixelXLApi31DebugAndroidTest
+        run: ./gradlew pixel2api30DebugAndroidTest
