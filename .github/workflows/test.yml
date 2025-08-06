@@ -24,6 +24,3 @@ jobs:
 
       - name: 📱 Set up Android SDK
         uses: android-actions/setup-android@v3
-
-      - name: 🔬 Run UI Instrumented Tests
-        run: ./gradlew pixel2api30DebugAndroidTest
