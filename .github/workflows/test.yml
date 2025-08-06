@@ -22,7 +22,20 @@ jobs:
       - name: 🧪 Run Unit Tests
         run: ./gradlew testDebugUnitTest
 
-      - name: 📤 Upload Unit Test Results (optional)
+      - name: 📱 Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 🔬 Run UI Instrumented Tests
+        run: ./gradlew connectedDebugAndroidTest
+
+      - name: 📤 Upload UI Test Results (optional)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+            name: ui-test-results
+            path: app/build/reports/androidTests/connected/
+
+      - name: 📤 Upload Unit Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
